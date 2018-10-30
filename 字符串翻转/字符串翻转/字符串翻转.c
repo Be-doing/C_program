@@ -17,41 +17,44 @@ int leng(char* str) {
     }
 	return len;
 }
-char swap_two(char* str) {
-	char* star = str;
-	char* end = str;
-	int lengx = leng(str);
-	while (*end!='\0') {
-	   while(*end!=' ') {
-		++end;
-	   }
-	   char temp = *star;
-	   *star = *end;
-	   *end = temp;
-	   star = end+2;
-	   end++;
-	}
-	
-	printf("%s",str);
-}
-char swap_one(char* str) {
-	char* star = str;
-	int lenmax = leng(str);
-	char* end = &str[lenmax-1];
-	while (star<=end){
-		char temp = *star;
-		*star = *end;
-		*end = temp;
+void swap_one(char* str, int star, int end) {
+
+	while (star <= end) {
+		char temp = str[star];
+		str[star] = str[end];
+		str[end] = temp;
 		++star;
 		--end;
 	}
-	printf("%s", str);
-	printf("\n");
-	swap_two(str);
 }
+
+void swap_two(char* str) {
+	int temp = 0; 
+	int start = 0; 
+	int end = leng(str) - 1;
+	swap_one(str,start,end);
+	printf("第一次翻转后的字符串：%s\n",str);
+	while(str[temp]!='\0') {
+		start = temp;
+		while((str[temp]!='\0')&&(str[temp]!=' ')) {
+			temp++;
+		} 
+		end = temp - 1;
+		swap_one(str,start,end);
+		if (str[temp] != '\0') {
+			temp++;
+		}
+	} 
+	printf("最后一次翻转后的字符串为：%s\n",str);
+}
+	
+
 
 void main() {
 	char orig[] = "student a am i";
-	swap_one(orig);
+	printf("原字符串为：%s\n",orig);
+	int end = leng(orig)-1;
+	int star = 0;
+	swap_two(orig);
 	system("pause");
 }
