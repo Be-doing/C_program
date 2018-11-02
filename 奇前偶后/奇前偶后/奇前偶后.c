@@ -19,7 +19,7 @@ void ahead_oaa(int arr[], int length) {
 	}
 }
 void main() {
-	int arr[10] = { 1,2,3,4,5,6,7,8,9,0 };
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,3 };
 	int len = sizeof(arr) / sizeof(arr[0]);
 	int show = 0;
 	ahead_oaa(arr, len);
