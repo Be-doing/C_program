@@ -15,15 +15,15 @@
 //然后循环K次
 void to_reversek(char* arr, int length, int k) {
 	while (k) {
-		char* j = arr;//存储第一个元素
+		char j = arr[0];//存储第一个元素
 		char* start = arr;
 
-		for (int temp = 0; temp < length - 1; ++temp) {
+		for (int temp = 0; temp < length-1; ++temp) {
 
 			*start = *(start + 1);
 			++start;
 		}
-		*start = *j;
+		*start = j;
 		--k;
 	}
 	printf("%s", arr);
