@@ -4,7 +4,7 @@
 // µœ÷memmov
 void* my_memmov(void* copy,void* from,size_t num) {
 	void* ret = copy;
-	if (copy <= from || ((char*)from + num)) {
+	if ((char*)from <= (char*)copy || ((char*)from>(char*)copy + num)) {
 		while (num--) {
 			*(char*)copy = *(char*)from;
 			copy = (char*)copy + 1;
