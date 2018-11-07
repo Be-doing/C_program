@@ -6,17 +6,17 @@ void* my_memmov(void* copy,void* from,size_t num) {
 	void* ret = copy;
 	if (copy <= from || ((char*)from + num)) {
 		while (num--) {
-			*(char*)copy = (char*)from;
+			*(char*)copy = *(char*)from;
 			copy = (char*)copy + 1;
 			from = (char*)from + 1;
 		}
 	}
-	else {
+	else {//区间重合
 		copy = (char*)copy + num - 1;
 		from = (char*)from + num - 1;
 
 		while (num--) {
-			*(char*)copy = (char*)from;
+			*(char*)copy = *(char*)from;
 			copy = (char*)copy - 1;
 			from = (char*)from - 1;
 

@@ -5,19 +5,23 @@
 char* my_memcpy(void* str2,void* str1,size_t num) {
 	assert(str1);
 	assert(str2);
-	int* start = str1;
-	int* start2 = str2;
+	void* ret = str2;
+	
 	while (num--){
-		*start2 = *start;
-		++start;
-		++start2;
+		*(char*)str2 = *(char*)str1;
+		++(char*)str2;
+		++(char*)str1;
 	}
-	return str2;
+	return ret;
 }
 void main() {
 	int arr[5] = {1,2,3,4,5};
 	int arr2[10] = {0};
 	int num = 3;
-	printf("%s\n",my_memcpy(arr2,arr,12));
+	my_memcpy(arr2, arr, 12);
+	while (num--) {
+		printf("%d\n", arr2[num]);
+	}
+	
 	system("pause");
 }
