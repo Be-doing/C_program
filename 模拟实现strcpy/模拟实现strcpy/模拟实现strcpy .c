@@ -3,12 +3,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<assert.h>
 //模拟实现strcpy
 
 //strcpy的格式是
 //strcpy(str,str2)
 //将str整个复制到str2
-void strcpy1(const char* str,char* str2) {
+char* strcpy1(char* str2, const char* str) {
+	assert(str);
+	assert(str2);
 	char* start = str;
 	char* start2 = str2;
 	int leng = strlen(str);
@@ -17,7 +20,7 @@ void strcpy1(const char* str,char* str2) {
 		++start;
 		++start2;
 	}
-	printf("复制后的字符串为：%s\n",str2);
+	return str;
 }
 void main() {
 	char str[] = "0";
@@ -25,6 +28,6 @@ void main() {
 	printf("请输入一串字符串:");
 	gets(str);
 	
-	strcpy1(str,str2);
+	printf("复制后：%s\n",strcpy1(str2,str));
 	system("pause");
 }

@@ -1,7 +1,10 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 int my_strcmp(const char* str1,const char* str2) {
+	assert(str1);
+	assert(str2);
 	char* p1 = str1;
 	char* p2 = str2;
 	while (*p1==*p2) {

@@ -1,7 +1,9 @@
 #define  _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<assert.h>
 int my_strchr(const char* str,const char ch) {
+	assert(str);
 	char* p = str;//指向首个元素char* pch = ch;
 	int adress = 0;//位置标记
 	while (*p!=ch) {

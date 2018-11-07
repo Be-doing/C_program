@@ -2,34 +2,36 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<assert.h>
 //模拟实现strcat
-void my_strcat(const char* str,const char* str2,int leng) {
-	char str3[20] = "0";
-	//char* num = str3;
+char* my_strcat( char* str, char* str2) {
+	assert(str);
+	assert(str2);
+	
 	char* p1 = str;
 	char* p2 = str2;
-	char* p3 = str3;
-	while (p3!=(str3+leng+1)) {
-		while (*p1 != '\0') {
-		*p3 = *p1;
+	char* p3 = str;
+	while (*p1 != '\0') {
+		
 		++p1;
-		++p3;
-		}
-
-			*p3 = *p2;
-			++p2;
-			++p3;
 		
 	}
-	printf("%s\n",str3);
+	while (*p2!='\0') {
+		
+
+			*p1 = *p2;
+			++p2;
+			++p1;
+		
+	}
+	p1 = '\0';
+	return p3;
 }
 void main() {
-	char str1[10] = "0";
-	char str2[10] = "0";
-	printf("请输入两个个字符串：");
-	gets_s(str1,9);
-	gets_s(str2,9);
-	int leng = strlen(str1) + strlen(str2);
-	my_strcat(str1,str2,leng);
+	char str1[] = "abcdefg";
+	char str2[] = "hijklmn";
+	//int leng = strlen(str1) + strlen(str2);
+	
+	printf("%s\n", my_strcat(str1, str2));
 	system("pause");
 }

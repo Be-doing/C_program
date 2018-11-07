@@ -3,29 +3,35 @@
 #include<stdlib.h>
 //实现memmov
 void* my_memmov(void* copy,void* from,size_t num) {
-	char* co = (char*)copy;//需要强转
-	char* fr =(char*) from;
-	if (((char*)copy+num)>fr) {//最后一个元素大于要复制的第一个元素，说明重合了。
+	void* ret = copy;
+	if (copy <= from || ((char*)from + num)) {
 		while (num--) {
-			*(co + num) = *(fr + num);
+			*(char*)copy = (char*)from;
+			copy = (char*)copy + 1;
+			from = (char*)from + 1;
 		}
 	}
 	else {
+		copy = (char*)copy + num - 1;
+		from = (char*)from + num - 1;
+
 		while (num--) {
-			*co = *fr;
-		++co;
-		++fr;
+			*(char*)copy = (char*)from;
+			copy = (char*)copy - 1;
+			from = (char*)from - 1;
+
 		}
 	}
-	return copy;
+	
+	return ret;
 }
 void main() {
 	int arr[5] = { 1,2,3,4,5 };
 	int arr2[3] = { 0 };
-	my_memmov(arr2,arr,3);
+	my_memmov(arr2,arr,16);
 	int i = 0;
-	while (i<3) {
-		printf("%d",arr2[i]);
+	while (i<4) {
+		printf("%d\t",arr2[i]);
 		++i;
 	}
 	printf("\n");
