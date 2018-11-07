@@ -29,7 +29,7 @@ void main() {
 	printf("请输入两个个字符串：");
 	gets_s(str1,9);
 	gets_s(str2,9);
-	int leng = strlen(str1) + strlen(str2)-1;
+	int leng = strlen(str1) + strlen(str2);
 	my_strcat(str1,str2,leng);
 	system("pause");
 }
