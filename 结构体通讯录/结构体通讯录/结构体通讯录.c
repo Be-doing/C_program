@@ -32,13 +32,18 @@ typedef struct BOOK {
 	int personcount;
 }as_book;
 //打印菜单
-void menu() {
-	printf("=========简单通讯录========");
-	printf("==========================");
-	printf("==========================");
-	printf("==========================");
-	printf("==========================");
-	printf("==========================");
+int menu() {
+	int choice = 0;
+	printf("=========简单通讯录=========\n");
+	printf("=========1、添加联系人======\n");
+	printf("=========2、删除联系人======\n");
+	printf("=========3、查找联系人======\n");
+	printf("=========4、修改联系人======\n");
+	printf("=========5、显示联系人======\n");
+	printf("=========6、退出通讯录======\n");
+	printf("请输入您的选择：");
+	scanf("%d",&choice);
+	return choice;
 }
 
 //查找指定联系人信息
@@ -194,10 +199,10 @@ void print_person(as_book* person) {
 	char* name3 = "0";
 	int temp = 0;
 	printf("请输入联系人：");
-	scanf("%s",name3[20]);
+	scanf("%s",name3);
 	while (temp<person->personcount)
 	{
-		if (strcmp(name3,person->address_book[temp].name)) {
+		if (strcmp(name3,person->address_book[temp].name)==0) {
 
 			printf("姓名：%s   性别：%s   年龄：%d   电话：%s   地址：%s\n", person->address_book[temp].name, person->address_book[temp].sex
 				, person->address_book[temp].age, person->address_book[temp].telnumber, person->address_book[temp].adress);
@@ -206,10 +211,41 @@ void print_person(as_book* person) {
 	printf("未找到！\n");
 	
 }
-void main() {
+int main() {
 	//使用开关函数，用户自行选择
 	as_book person;
-	init_book(&person);
-	add_person(&person);
+	init_book(&person);//初始化结构体
+	int choice = 0;
+	while (1)
+	{
+		choice=menu();//打印菜单
+		switch (choice)
+		{
+		case 1:
+			add_person(&person);//添加
+			break;
+		case 2:
+			del_person(&person);//删除
+			break;
+		case 3:
+			find_person(&person);//查找
+			break;
+		case 4:
+			alt_person(&person);//修改
+			break;
+		case 5:
+			show_all(&person);//显示
+			break;
+		case 6:
+			printf("退出程序！\n");
+			system("pause");
+			return 0;
+			break;
+		default:
+			break;
+		}
+	
+	}
+	return 0;
 	system("pause");
 }
