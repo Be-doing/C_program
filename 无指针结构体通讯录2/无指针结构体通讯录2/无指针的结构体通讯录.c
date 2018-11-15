@@ -44,6 +44,11 @@ int book_menu() {
 	scanf("%d", &choice);
 	return choice;
 }
+void empty_person() {//清空和初始化的相同作用。所以这里可以写成初始化
+	address_book->personcount = 0;
+	memset(address_book, 0x0, sizeof(address_book));
+	printf("通讯录已经初始化！\n");
+}
 void add_person() {
 	if (address_book->personcount==PERSONMAX) {
 		printf("通讯录已满，添加失败！\n");
@@ -74,13 +79,14 @@ int find_person() {
 			printf("编号\t姓名\t性别\t年龄\t电话\t住址\n");
 			printf("=================================================\n");
 		}
-		if (strcmp(name,address_book[address_book->personcount].name)==0) {
+		if (strcmp(name,address_book[temp].name)==0) {
 			printf("%d\t%s\t%s\t%d\t%s\t%s\t", address_book->personcount, address_book->name, address_book->sex
 				, address_book->age, address_book->tel, address_book->address);
 			printf("\n");
 			++temp;
 			return address_book->personcount;
 		}
+		++temp;
 	}
 	
 	printf("通讯录里没有该联系人！\n");
@@ -90,18 +96,59 @@ void del_person() {
 	int temp = 0;
 	temp = find_person();
 	if (temp==0) {
-		printf("没有该联系人！\n");
+		;
 	}
-	else{
-		while (temp<address_book->personcount){
+	else {
+			while (temp<address_book->personcount){
 			address_book[temp] = address_book[temp + 1];
 			++temp;
 		}
+		--address_book->personcount;
 		printf("成功删除该联系人！\n");
+	
 	}
 }
 void alt_person() {
-
+	int temp = 0;
+	temp = find_person();
+	if (temp==0) {
+		;
+	}
+	else {
+	int choice = 0;
+		int max = 5;
+		while (max--) {//有五次修改机会，没选择一次就会减少一次。
+			printf(" ======1、姓名 === 2、性别=======\n");
+			printf(" ======3、年龄 === 4、电话=======\n");
+			printf(" ======5、地址 === 6、跳过=======\n");
+			printf("请选择要修改的项：");
+			scanf("%d", &choice);
+			switch (choice)
+			{
+			case 1:
+				scanf("姓名修改为：%s", address_book[temp].name);
+				break;
+			case 2:
+				scanf("性别修改为：%s", address_book[temp].sex);
+				break;
+			case 3:
+				scanf("年龄修改为：%d", &address_book[temp].age);
+				break;
+			case 4:
+				scanf("电话修改为：%s", address_book[temp].tel);
+				break;
+			case 5:
+				scanf("地址修改为：%s", address_book[temp].address);
+				break;
+			case 6:
+				printf("请继续选择。\n");
+				break;
+			default:
+				++max;//输入错误，加一次修改机会。
+				break;
+			}
+		}
+	}
 }
 void print_person() {
 	if (address_book->personcount==0) {
@@ -120,11 +167,32 @@ void print_person() {
 		}
 	}
 }
-void empty_person() {
 
-}
 void sort_person() {
-
+	if (address_book->personcount == 0)
+	{
+		printf("通讯录为空，不需要排序！\n");
+	}
+	else
+	{
+		int row = 0;
+		while (row < address_book->personcount - 1)
+		{
+			int col = 0;
+			while (col < address_book->personcount - 1 - row)
+			{
+				if (strcmp(address_book[col].name,address_book[col + 1].name) > 0)
+				{
+					char temp[1024];
+					strcpy(temp, address_book[col].name);
+					strcpy(address_book[col].name, address_book[col + 1].name);
+					strcpy(address_book[col + 1].name, temp);
+				}
+				++col;
+			}
+			++row;
+		}
+	}
 }
 int main(){
 	int choice = 0;
