@@ -50,6 +50,8 @@ int menu() {
 int find_person(as_book* person) {
 	char name2[20];
 	int temp = 0;
+	printf("请输入姓名：");
+	scanf("%s",name2);
 	while (temp < person->personcount) {
 		if (strcmp(name2, person->address_book[temp].name) == 0) {
 			printf("姓名：%s   性别：%s   年龄：%d   电话：%s   地址：%s\n", person->address_book[temp].name, person->address_book[temp].sex
@@ -120,18 +122,18 @@ void alt_person(as_book* person) {
 		switch (choice)
 		{
 		case 1:
-			scanf("姓名修改为：%s",person->address_book[temp].name);
+			scanf("%s",person->address_book[temp].name);
 			break;
 		case 2:
-			scanf("性别修改为：%s",person->address_book[temp].sex);
+			scanf("%s",person->address_book[temp].sex);
 			break;
 		case 3:
-			scanf("年龄修改为：%d", &person->address_book[temp].age);
+			scanf("%d", &person->address_book[temp].age);
 			break;
 		case 4:
-			scanf("电话修改为：%s", person->address_book[temp].telnumber);
+			scanf("%s", person->address_book[temp].telnumber);
 		case 5:
-			scanf("地址修改为：%s", person->address_book[temp].adress);
+			scanf("%s", person->address_book[temp].adress);
 			break;
 		default:
 			max++;//输入错误，加一次修改机会。
