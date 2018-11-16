@@ -126,19 +126,24 @@ void alt_person() {
 			switch (choice)
 			{
 			case 1:
-				scanf("姓名修改为：%s", address_book[temp].name);
+				printf("姓名修改为：");
+				scanf("%s", address_book[temp].name);
 				break;
 			case 2:
-				scanf("性别修改为：%s", address_book[temp].sex);
+				printf("性别修改为：");
+				scanf("%s", address_book[temp].sex);
 				break;
 			case 3:
-				scanf("年龄修改为：%d", &address_book[temp].age);
+				printf("年龄修改为：");
+				scanf("%d", &address_book[temp].age);
 				break;
 			case 4:
-				scanf("电话修改为：%s", address_book[temp].tel);
+				printf("电话修改为：");
+				scanf("%s", address_book[temp].tel);
 				break;
 			case 5:
-				scanf("地址修改为：%s", address_book[temp].address);
+				printf("地址修改为：");
+				scanf("%s", address_book[temp].address);
 				break;
 			case 6:
 				printf("请继续选择。\n");
