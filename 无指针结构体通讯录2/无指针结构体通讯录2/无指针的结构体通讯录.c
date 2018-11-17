@@ -74,23 +74,23 @@ int find_person() {
 	printf("请输入查找人的姓名：");
 	scanf("%s",name);
 	int temp = 0;
+	printf("编号\t姓名\t性别\t年龄\t电话\t住址\n");
+	printf("=================================================\n");
 	while (temp<address_book->personcount){
-		if (temp==0)		{
-			printf("编号\t姓名\t性别\t年龄\t电话\t住址\n");
-			printf("=================================================\n");
-		}
+		
+
+	
 		if (strcmp(name,address_book[temp].name)==0) {
-			printf("%d\t%s\t%s\t%d\t%s\t%s\t", address_book->personcount, address_book->name, address_book->sex
-				, address_book->age, address_book->tel, address_book->address);
+			printf("%d\t%s\t%s\t%d\t%s\t%s\t", address_book[temp].personcount, address_book[temp].name, address_book[temp].sex
+				, address_book[temp].age, address_book[temp].tel, address_book[temp].address);
 			printf("\n");
-			++temp;
-			return address_book->personcount;
+			return temp;
 		}
 		++temp;
 	}
 	
 	printf("通讯录里没有该联系人！\n");
-	return 0;
+	return -1;
 }
 void del_person() {
 	int temp = 0;
@@ -111,7 +111,7 @@ void del_person() {
 void alt_person() {
 	int temp = 0;
 	temp = find_person();
-	if (temp==0) {
+	if (temp==-1) {
 		;
 	}
 	else {
@@ -165,8 +165,8 @@ void print_person() {
 		printf("=================================================\n");
 		while (temp<address_book->personcount)
 		{
-			printf("%d\t%s\t%s\t%d\t%s\t%s\t",address_book->personcount,address_book->name,address_book->sex
-			,address_book->age,address_book->tel,address_book->address);
+			printf("%d\t%s\t%s\t%d\t%s\t%s\t", address_book[temp].personcount, address_book[temp].name, address_book[temp].sex
+				, address_book[temp].age, address_book[temp].tel, address_book[temp].address);
 			printf("\n");
 			++temp;
 		}
