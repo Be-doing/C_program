@@ -11,12 +11,16 @@ void main() {
 	else {
 		printf("文件已打开！\n");
 	}
-	int c;
-	while ((c=fgetc(stdin))!=EOF){
-		fputc(c, stdout);
-		fputc(c, fp);
+	//int c;
+	//while ((c=fgetc(stdin))!=EOF){
+	//	fputc(c, stdout);
+	//	fputc(c, fp);
+	//}
+	char buf[1024] = "0";
+	while (fgets(buf,sizeof(buf),stdin)!=NULL) {
+		fputs(buf, stdout);
+		fputs(buf, fp);
 	}
-
 
 	fclose(fp);
 	
