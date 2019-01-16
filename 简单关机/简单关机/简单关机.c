@@ -22,7 +22,9 @@ again:
 	if (strcmp(input, "ÎÒÊÇÖí") == 0)
 	{
 		printf("ÄãÊÇÖí£¡ÂÔÂÔÂÔ");
+		
 		system("shutdown -a");
+		system("pause");
 	}
 	else
 	{
