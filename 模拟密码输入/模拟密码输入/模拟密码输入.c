@@ -12,27 +12,22 @@ void main() {
 	char password_i[20];
 	char password[] = "618524";
 	printf("请输入六位密码：");
-		while (num<3) {
+		while (num<3) 
+		{
 			scanf("%s",password_i);
-			//gets(password_i);
-			if(strlen(password_i)!=6){
-				printf("你输入的密码无效！");
-				break;
-			}
-			if (strcmp(password_i,password) == 0) {
+	
+			if (strcmp(password_i,password) == 0)
+			{
 				printf("登陆成功\n");
 				break;
 			}
-			else {
+			else 
+			{
+				printf("你输入的密码错误！请重新输入:");
 				if (num == 2) {
 				printf("此卡已锁！\n");
-				}
-				else {
-                 printf("请重新输入:");
-				}
 			}
 			num++;
-			
 		}	
 	system("pause");
 }
